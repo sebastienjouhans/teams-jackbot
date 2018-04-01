@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 var Botkit = require('botkit');
+var debug = require('debug')('botkit:main');
 
 var controller = Botkit.teamsbot({
     debug: true,
@@ -8,6 +9,13 @@ var controller = Botkit.teamsbot({
   clientId: process.env.clientId,
   clientSecret: process.env.clientSecret,
 });
+
+if (process.env.mongoUri) {
+    var mongoStorage = require('botkit-storage-mongo')({mongoUri: process.env.mongoUri});
+    bot_options.storage = mongoStorage;
+} else {
+    debug("No mongodb storage Uri");
+}
 
 var dialogflowMiddleware = require('botkit-middleware-dialogflow')({
     token: process.env.dialogflowDeveloperToken,
