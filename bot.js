@@ -20,7 +20,7 @@ if (process.env.mongoUri) {
     debug("No mongodb storage Uri");
 }
 
-mongoClient.connect(process.env.mongoUri, function (err, db) {
+mongoClient.connect(process.env.mongoUri+"/jackbot", function (err, db) {
     db.collection('content', function (err, collection) {
         if (err) throw err;
         content = collection;
