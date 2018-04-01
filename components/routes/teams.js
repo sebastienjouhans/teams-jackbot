@@ -3,7 +3,7 @@ module.exports = function(webserver, controller) {
   webserver.post('/botframework/receive', function(req, res) {
 
     var message = req.body;
-    debug(message);
+    console.log(message);
     var options = {
         serviceUrl: message.serviceUrl,
     }
