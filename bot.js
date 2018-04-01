@@ -21,6 +21,8 @@ if (process.env.mongoUri) {
 }
 
 mongoClient.connect(process.env.mongoUri, function (err, db) {
+    debug('mongodb connect');
+    console.log('mongodb connect');
     db.collection('content', function (err, collection) {
         if (err) throw err;
         content = collection;
