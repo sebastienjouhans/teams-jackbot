@@ -26,7 +26,7 @@ mongoClient.connect(process.env.mongoUri, function (err, db) {
         content = collection;
         debug(content);        
     });
-  db.close();
+  //db.close();
 });
 
 var controller = Botkit.teamsbot(bot_options);
