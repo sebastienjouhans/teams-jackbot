@@ -54,6 +54,8 @@ require('dotenv').config();
 var Botkit = require('botkit');
 
 var controller = Botkit.teamsbot({
+    debug: true,
+    log: true,
   clientId: process.env.clientId,
   clientSecret: process.env.clientSecret,
 });
