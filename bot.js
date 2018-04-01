@@ -24,7 +24,7 @@ mongoClient.connect(process.env.mongoUri, function (err, db) {
     db.collection('content', function (err, collection) {
         if (err) throw err;
         content = collection;
-        console.log(content);        
+        console.log(content.find({}));        
     });
   //db.close();
 });
