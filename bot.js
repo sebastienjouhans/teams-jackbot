@@ -14,16 +14,14 @@ var bot_options = {
 var content = {};
 
 if (process.env.mongoUri) {
-    var mongoStorage = require('botkit-storage-mongo')({mongoUri: process.env.mongoUri});
+    var mongoStorage = require('botkit-storage-mongo')({mongoUri: process.env.mongoHistoryUri});
     bot_options.storage = mongoStorage;
 } else {
     debug("No mongodb storage Uri");
 }
 
 mongoClient.connect(process.env.mongoUri, function (err, client) {
-    var db = client.db('jackbot');
-
-    //console.log(db.content.find().pretty());    
+    var db = client.db('jackbot'); 
 
     db.collection('content', function (err, collection) {
         if (err) throw err;
