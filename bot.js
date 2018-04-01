@@ -9,18 +9,7 @@ var bot = controller.spawn({
     appPassword: process.env.clientSecret
 });
 
-var normalizedPath = require("path").join(__dirname, "skills");
-require("fs").readdirSync(normalizedPath).forEach(function(file) {
-  require("./skills/" + file)(controller);
-});
-
-// if you are already using Express, you can use your own server instance...
-// see "Use BotKit with an Express web server"
-controller.setupWebserver(process.env.PORT,function(err,webserver) {
-  controller.createWebhookEndpoints(controller.webserver, bot, function() {
-      console.log('This bot is online!!!');
-  });
-});
+var webserver = require(__dirname + '/components/express_webserver.js')(slackController);
 
 // user said hello
 controller.hears(['hello'], 'message_received', function(bot, message) {

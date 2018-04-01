@@ -1,6 +1,6 @@
 module.exports = function(webserver, controller) {
 
-  webserver.post('/teams/receive', function(req, res) {
+  webserver.post('/botframework/receive', function(req, res) {
 
     var message = req.body;
     debug(message);
