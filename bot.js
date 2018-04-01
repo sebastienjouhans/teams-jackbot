@@ -58,6 +58,12 @@ var controller = Botkit.teamsbot({
   clientSecret: process.env.clientSecret,
 });
 
+var dialogflowMiddleware = require('botkit-middleware-dialogflow')({
+    token: process.env.dialogflowDeveloperToken,
+});
+
+controller.middleware.receive.use(dialogflowMiddleware.receive);
+
 controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
     controller.createWebhookEndpoints(webserver, function() {
         console.log("BOTKIT: Webhooks set up!");
@@ -66,6 +72,27 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
 
 controller.hears('hello', 'direct_message,direct_mention', function(bot, message) {
     bot.reply(message, 'Hi');
+});
+
+controller.hears(['templates_intent'], 'direct_message,direct_mention,mention', dialogflowMiddleware.hears, function(bot, message) {
+
+    if(message.entities){
+        switch(message.entities.template_name_entity.toLocaleLowerCase())
+        {
+            case 'creative': 
+                bot.reply(message, "path to creative brief template"); 
+                break;
+            case 'pitch': 
+                bot.reply(message, "path to pitch template");
+                break;
+            case 'presentation': 
+                bot.reply(message, "path to presentation template");
+                break;
+            case 'creds': 
+                bot.reply(message, "path to creds template");
+                break;
+        }
+    }
 });
 
 controller.on('direct_mention', function(bot, message) {
