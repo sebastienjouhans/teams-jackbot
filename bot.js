@@ -9,7 +9,7 @@ var bot = controller.spawn({
     appPassword: process.env.clientSecret
 });
 
-var webserver = require(__dirname + '/components/express_webserver.js')(slackController);
+var webserver = require(__dirname + '/components/express_webserver.js')(controller);
 
 // user said hello
 controller.hears(['hello'], 'message_received', function(bot, message) {
