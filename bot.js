@@ -5,8 +5,13 @@ var controller = Botkit.botframeworkbot({
 });
 
 var bot = controller.spawn({
-        appId: process.env.clientId,
-        appPassword: process.env.clientSecret
+    appId: process.env.clientId,
+    appPassword: process.env.clientSecret
+});
+
+var normalizedPath = require("path").join(__dirname, "skills");
+require("fs").readdirSync(normalizedPath).forEach(function(file) {
+  require("./skills/" + file)(controller);
 });
 
 // if you are already using Express, you can use your own server instance...
