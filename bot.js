@@ -1,18 +1,11 @@
 require('dotenv').config();
 
-var Botkit = require('botkit');
-// var controller = Botkit.botframeworkbot({
-// });
-
-// var bot = controller.spawn({
-//     appId: process.env.clientId,
-//     appPassword: process.env.clientSecret
-// });
-
 var bot_options = {
     clientId: process.env.clientId,
     clientSecret: process.env.clientSecret
 };
+
+var Botkit = require('botkit');
 
 var controller = Botkit.teamsbot(bot_options);
 
@@ -21,8 +14,6 @@ var dialogflowMiddleware = require('botkit-middleware-dialogflow')({
 });
 
 controller.middleware.receive.use(dialogflowMiddleware.receive);
-//bot.startRTM();
-
 
 // controller.setupWebserver(process.env.PORT,function(err,webserver) {
 //   controller.createWebhookEndpoints(controller.webserver, bot, function() {
@@ -40,7 +31,6 @@ require("fs").readdirSync(normalizedPath).forEach(function(file) {
 });
 
 
-// user said hello
 controller.hears(['hello'], 'message_received', function(bot, message) {
 
     bot.reply(message, 'Hey there.');
