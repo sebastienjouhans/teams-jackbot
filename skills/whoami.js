@@ -4,6 +4,7 @@
 */
 module.exports = function(controller, dialogflowMiddleware) {
 
+  console.log(dialogflowMiddleware);
   controller.hears('who am i', 'direct_message, direct_mention', function(bot, message) {
 
     bot.api.getUserById(message.channel, message.user, function(err, user) {
