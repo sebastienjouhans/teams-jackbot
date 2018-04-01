@@ -23,18 +23,22 @@ var dialogflowMiddleware = require('botkit-middleware-dialogflow')({
 controller.middleware.receive.use(dialogflowMiddleware.receive);
 //bot.startRTM();
 
+
+// controller.setupWebserver(process.env.PORT,function(err,webserver) {
+//   controller.createWebhookEndpoints(controller.webserver, bot, function() {
+//       console.log('This bot is online!!!');
+//   });
+// });
+
+var webserver = require(__dirname + '/components/express_webserver.js')(controller);
+
+controller.startTicking();
+
 var normalizedPath = require("path").join(__dirname, "skills");
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
   require("./skills/" + file)(controller, dialogflowMiddleware);
 });
 
-controller.setupWebserver(process.env.PORT,function(err,webserver) {
-  controller.createWebhookEndpoints(controller.webserver, bot, function() {
-      console.log('This bot is online!!!');
-  });
-});
-
-//var webserver = require(__dirname + '/components/express_webserver.js')(controller);
 
 // user said hello
 controller.hears(['hello'], 'message_received', function(bot, message) {
