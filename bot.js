@@ -30,6 +30,8 @@ mongoClient.connect(process.env.mongoUri, function (err, client) {
         console.log(content.find({}));        
     });
   db.close();
+
+  console.log(content.find("person"));  
 });
 
 var controller = Botkit.teamsbot(bot_options);
