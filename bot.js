@@ -27,11 +27,11 @@ mongoClient.connect(process.env.mongoUri, function (err, client) {
         content = collection;
         console.log(content.find());        
         console.log("--------------");        
-        console.log(content.find({}));        
+        console.log(content.find("person"));        
     });
   db.close();
 
-  console.log(content.find("person"));  
+  //console.log(content.find("person"));  
 });
 
 var controller = Botkit.teamsbot(bot_options);
