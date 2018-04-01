@@ -1,13 +1,20 @@
 require('dotenv').config();
 
 var Botkit = require('botkit');
-var controller = Botkit.botframeworkbot({
-});
+// var controller = Botkit.botframeworkbot({
+// });
 
-var bot = controller.spawn({
-    appId: process.env.clientId,
-    appPassword: process.env.clientSecret
-});
+// var bot = controller.spawn({
+//     appId: process.env.clientId,
+//     appPassword: process.env.clientSecret
+// });
+
+var bot_options = {
+    clientId: process.env.clientId,
+    clientSecret: process.env.clientSecret
+};
+
+var controller = Botkit.teamsbot(bot_options);
 
 var dialogflowMiddleware = require('botkit-middleware-dialogflow')({
     token: process.env.dialogflowDeveloperToken,
