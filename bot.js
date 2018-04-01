@@ -12,7 +12,7 @@ var bot = controller.spawn({
 var dialogflowMiddleware = require('botkit-middleware-dialogflow')({
     token: process.env.dialogflowDeveloperToken,
 });
-
+console.log(dialogflowMiddleware);
 var normalizedPath = require("path").join(__dirname, "skills");
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
   require("./skills/" + file)(controller, dialogflowMiddleware);
