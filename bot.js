@@ -14,7 +14,7 @@ var dialogflowMiddleware = require('botkit-middleware-dialogflow')({
 });
 
 controller.middleware.receive.use(dialogflowMiddleware.receive);
-bot.startRTM();
+//bot.startRTM();
 
 var normalizedPath = require("path").join(__dirname, "skills");
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
