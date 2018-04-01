@@ -30,9 +30,16 @@ mongoClient.connect(process.env.mongoUri, function (err, client) {
         content = collection;       
         var cursor = content.find({});   
         
-        //while (cursor.hasNext()) {
-            //console.log(JSON.stringify(cursor.next()));
-         //}
+        cursor.each(function(err, doc) {
+            if(err)
+                throw err;
+            if(doc==null)
+                return;
+         
+            console.log("document find:");
+            console.log(doc.person);
+            console.log(doc.person[1].name);
+        });
     });
   db.close();
 });
