@@ -1,0 +1,22 @@
+{
+  "name": "Jackbot",
+  "description": "",
+  "repository": "",
+  "keywords": ["node", "bots", "microsoft teams","botkit"],
+  "website": "",
+  "success_url":"/",
+  "addons":[
+    {
+      "plan": "mongolab",
+      "as": "MONGO"
+    }
+  ],
+  "env": {
+      "clientId": {
+          "description": "Client ID"
+      },
+      "clientSecret": {
+          "description": "Client Secret"
+      }
+  }
+}
