@@ -28,7 +28,11 @@ mongoClient.connect(process.env.mongoUri, function (err, client) {
     db.collection('content', function (err, collection) {
         if (err) throw err;
         content = collection;       
-        console.log(content.find({"name":"seb"}));        
+        var cursor = content.find({});   
+        
+        while (cursor.hasNext()) {
+            console.log(JSON.parse(cursor.next()));
+         }
     });
   db.close();
 });
