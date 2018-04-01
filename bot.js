@@ -13,22 +13,21 @@ var bot_options = {
 
 var content = {};
 
-if (process.env.mongoUri) {
-    var mongoStorage = require('botkit-storage-mongo')({mongoUri: process.env.mongoHistoryUri});
-    bot_options.storage = mongoStorage;
-} else {
-    debug("No mongodb storage Uri");
-}
+// if (process.env.mongoUri) {
+//     var mongoStorage = require('botkit-storage-mongo')({mongoUri: process.env.mongoHistoryUri});
+//     bot_options.storage = mongoStorage;
+// } else {
+//     debug("No mongodb storage Uri");
+// }
 
 mongoClient.connect(process.env.mongoUri, function (err, client) {
     var db = client.db('jackbot'); 
 
     db.collection('content', function (err, collection) {
         if (err) throw err;
-        content = collection;       
-        var cursor = content.find({});   
-        
-        cursor.each(function(err, doc) {
+
+        content = collection.find({});       
+        content.each(function(err, doc) {
             if(err)
                 throw err;
             if(doc==null)
@@ -65,37 +64,6 @@ require("fs").readdirSync(normalizedPath).forEach(function(file) {
 controller.hears('hello', 'direct_message,direct_mention', function(bot, message) {
     bot.reply(message, 'Hi');
 });
-
-// controller.hears(['templates_intent'], 'direct_message,direct_mention,mention', dialogflowMiddleware.hears, function(bot, message) {
-
-//     if(message.entities){
-//         switch(message.entities.template_name_entity.toLocaleLowerCase())
-//         {
-//             case 'creative': 
-//                 bot.reply(message, "path to creative brief template"); 
-//                 break;
-//             case 'pitch': 
-//                 bot.reply(message, "path to pitch template");
-//                 break;
-//             case 'presentation': 
-//                 bot.reply(message, "path to presentation template");
-//                 break;
-//             case 'creds': 
-//                 bot.reply(message, "path to creds template");
-//                 break;
-//         }
-//     }
-// });
-
-// controller.hears('who am i', 'direct_message, direct_mention', function(bot, message) {
-//     bot.api.getUserById(message.channel, message.user, function(err, user) {
-//         if (err) {
-//           bot.reply(message,'Error loading user:' + err);
-//         } else {
-//           bot.reply(message,'You are ' + user.name + ' and your email is ' + user.email + ' and your user id is ' + user.id);
-//         }
-//     });
-// });
 
 controller.on('direct_mention', function(bot, message) {
     bot.reply(message, 'You mentioned me and said, "' + message.text + '"');
