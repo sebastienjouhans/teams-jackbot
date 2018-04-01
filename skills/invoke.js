@@ -2,7 +2,7 @@
     Demonstrate how to receive an button click event,
     which trigger the "invoke" handler
 */
-module.exports = function(controller) {
+module.exports = function(controller, dialogflowMiddleware) {
 
   controller.on('invoke', function(bot, message) {
 

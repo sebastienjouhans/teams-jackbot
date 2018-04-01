@@ -2,7 +2,7 @@
     Demonstrate how to use `updateMessage()` to replace an existing message
     with a new one!
 */
-module.exports = function(controller) {
+module.exports = function(controller, dialogflowMiddleware) {
 
   controller.hears('update', 'direct_message,direct_mention', function(bot, message) {
     bot.reply(message, 'This is the original message', function(err, poll_message) {

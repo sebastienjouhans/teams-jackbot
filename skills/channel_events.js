@@ -2,7 +2,7 @@
     Demonstrate how to catch and take action based on changes to the
     channel list
 */
-module.exports = function(controller) {
+module.exports = function(controller, dialogflowMiddleware) {
 
   controller.on('channelDeleted', function(bot, message) {
 

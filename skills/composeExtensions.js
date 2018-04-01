@@ -8,7 +8,7 @@
     channel.
 
 */
-module.exports = function(controller) {
+module.exports = function(controller, dialogflowMiddleware) {
 
   controller.on('composeExtension', function(bot, message) {
 

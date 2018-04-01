@@ -3,7 +3,7 @@
     channel to a 1:1 discussion with the bot.
 */
 
-module.exports = function(controller) {
+module.exports = function(controller, dialogflowMiddleware) {
 
   controller.hears('private', 'direct_mention', function(bot, message) {
     bot.startPrivateConversation(message, function(err, convo) {

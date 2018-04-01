@@ -9,9 +9,13 @@ var bot = controller.spawn({
     appPassword: process.env.clientSecret
 });
 
+var dialogflowMiddleware = require('botkit-middleware-dialogflow')({
+    token: process.env.dialogflowDeveloperToken,
+});
+
 var normalizedPath = require("path").join(__dirname, "skills");
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
-  require("./skills/" + file)(controller);
+  require("./skills/" + file)(controller, dialogflowMiddleware);
 });
 
 controller.setupWebserver(process.env.PORT,function(err,webserver) {

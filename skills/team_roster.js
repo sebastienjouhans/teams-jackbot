@@ -2,7 +2,7 @@
     Demonstrate how the `getTeamRoster` and `getConversationMembers` API
     methods can be used to get a list of conversation participants
 */
-module.exports = function(controller) {
+module.exports = function(controller, dialogflowMiddleware) {
 
 
   controller.hears('roster', 'direct_mention', function(bot, message) {

@@ -2,7 +2,7 @@
     This skill demonstrates the use of `bot.api.getUserById()` to load
     the user profile information of the sender of an incoming message.
 */
-module.exports = function(controller) {
+module.exports = function(controller, dialogflowMiddleware) {
 
   controller.hears('who am i', 'direct_message, direct_mention', function(bot, message) {
 

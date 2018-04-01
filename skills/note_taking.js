@@ -13,7 +13,7 @@
 
 */
 
-module.exports = function(controller) {
+module.exports = function(controller, dialogflowMiddleware) {
 
   controller.studio.before('add note', function(convo, next) {
 

@@ -4,7 +4,7 @@
     `bot_channel_join` event, then loads and performs the onboarding
     script from Botkit Studio
 */
-module.exports = function(controller) {
+module.exports = function(controller, dialogflowMiddleware) {
 
   controller.on('user_channel_join', function(bot, message) {
 

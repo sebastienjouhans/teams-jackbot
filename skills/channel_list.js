@@ -2,7 +2,7 @@
     Demonstrate how to use the `api.getChannels()` function
     to get a list of all the channels in a team
 */
-module.exports = function(controller) {
+module.exports = function(controller, dialogflowMiddleware) {
 
 
   controller.hears('channels', 'direct_mention', function(bot, message) {
