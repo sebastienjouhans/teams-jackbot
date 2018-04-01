@@ -13,7 +13,7 @@ microsoftTeams.settings.registerOnSaveHandler(function(saveEvent){
       microsoftTeams.getContext(function(context){
          microsoftTeams.settings.setSettings({
            entityId: "notes_by_channel",
-           //contentUrl: "{{botkit_host}}/teams/tabs/notesByChannel/" + context.channelId,
+           contentUrl: "{{botkit_host}}/teams/tabs/notesByChannel/" + context.channelId,
            suggestedDisplayName: "My Botkit Tab",
            websiteUrl: "{{botkit_host}}",
            removeUrl: "{{botkit_host}}/teams/tabs/remove",
