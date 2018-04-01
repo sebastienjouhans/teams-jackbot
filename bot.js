@@ -30,9 +30,9 @@ mongoClient.connect(process.env.mongoUri, function (err, client) {
         content = collection;       
         var cursor = content.find({});   
         
-        while (cursor.hasNext()) {
+        //while (cursor.hasNext()) {
             //console.log(JSON.stringify(cursor.next()));
-         }
+         //}
     });
   db.close();
 });
