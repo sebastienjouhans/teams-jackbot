@@ -22,16 +22,15 @@ if (process.env.mongoUri) {
 
 mongoClient.connect(process.env.mongoUri, function (err, client) {
     var db = client.db('jackbot');
+
+    //console.log(db.content.find().pretty());    
+
     db.collection('content', function (err, collection) {
         if (err) throw err;
-        content = collection;
-        console.log(content.find());        
-        console.log("--------------");        
-        console.log(content.find("person"));        
+        content = collection;       
+        console.log(content.find().pretty());        
     });
   db.close();
-
-  //console.log(content.find("person"));  
 });
 
 var controller = Botkit.teamsbot(bot_options);
