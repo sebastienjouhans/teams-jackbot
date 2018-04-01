@@ -2,7 +2,7 @@ require('dotenv').config();
 
 var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');
-var MongoClient = require('mongodb').MongoClient;
+var mongoClient = require('mongodb').MongoClient;
 
 var bot_options = {
     debug: true,
